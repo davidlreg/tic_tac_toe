@@ -11,6 +11,10 @@ body {
   color: white; /* Standardfarbe für Text */
 }
 
+#content {
+  position: relative; /* Wichtig, damit das SVG über der Tabelle positioniert wird */
+}
+
 .contentWrapper {
   display: flex;
   flex-direction: column;
@@ -72,4 +76,16 @@ td:hover {
   border-radius: 16px;
   text-align: center;
   border: 2px solid #616161;
+}
+
+.winning-line {
+  position: absolute;
+  z-index: 9999; /* Sicherstellen, dass die Linie über der Tabelle liegt */
+  pointer-events: none; /* Verhindert Interaktionen */
+}
+
+.winning-line path {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  transition: stroke-dashoffset 1s ease;
 }
