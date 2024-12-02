@@ -1,9 +1,12 @@
 let fields = [null, null, null, null, null, null, null, null, null];
 
+let currentPlayer = "circle"; // Startspieler ist "circle"
+
 function init() {
   render();
 }
 
+// Die Funktion, die die gesamte Tabelle einmal rendert
 function render() {
   let contentDiv = document.getElementById("content");
   let html = "<table>";
@@ -21,6 +24,7 @@ function render() {
         symbol = generateXSVG(); // Kreuz
       }
 
+      // Erstelle die Tabelle mit onclick-Event für jedes td
       html += `<td onclick="handleClick(${fieldIndex})">${symbol}</td>`;
     }
     html += "</tr>";
@@ -30,13 +34,25 @@ function render() {
   contentDiv.innerHTML = html;
 }
 
-let currentPlayer = "circle"; // Startspieler ist "circle"
-
+// Die Funktion, die nur das angeklickte Feld aktualisiert
 function handleClick(index) {
   if (!fields[index]) {
-    // Prüfen, ob das Feld frei ist
-    fields[index] = currentPlayer; // Aktuellen Spieler setzen
+    // Wenn das Feld frei ist
+    fields[index] = currentPlayer; // Setze das Symbol für den aktuellen Spieler
     currentPlayer = currentPlayer === "circle" ? "cross" : "circle"; // Spieler wechseln
-    render(); // Tabelle neu rendern
+
+    // Finde das td-Element, das dem angeklickten Index entspricht
+    let cell = document.querySelectorAll("td")[index];
+
+    // Generiere das SVG für das aktuelle Symbol
+    let symbol = "";
+    if (fields[index] === "circle") {
+      symbol = generateCircleSVG(); // Kreis
+    } else if (fields[index] === "cross") {
+      symbol = generateXSVG(); // Kreuz
+    }
+
+    // Setze das SVG in das entsprechende Feld
+    cell.innerHTML = symbol;
   }
 }
