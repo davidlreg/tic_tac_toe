@@ -1,0 +1,56 @@
+/* Hintergrundfarbe der gesamten Seite */
+body {
+  background-color: #323232;
+  font-family: "Open Sans", sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Zentriert die Tabelle vertikal */
+  color: white; /* Standardfarbe für Text */
+}
+
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 64px;
+}
+
+/* Tic Tac Toe Tabelle */
+table {
+  width: 300px;
+  height: 300px;
+  border-collapse: collapse; /* Entfernt äußere Rahmen und erlaubt durchgehende Linien */
+  background-color: transparent; /* Kein Hintergrund um die Tabelle */
+}
+
+/* Zellen der Tabelle */
+td {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 2em;
+  font-weight: bold;
+  border: 5px solid white; /* Trennlinien innerhalb der Tabelle */
+  border-width: 0 5px 5px 0; /* Nur rechte und untere Linien sichtbar */
+  background-color: #323232; /* Hintergrundfarbe der Zellen */
+  cursor: pointer;
+}
+
+/* Entferne die unteren und rechten Ränder bei der letzten Zeile/Spalte */
+td:last-child {
+  border-right: 0;
+}
+
+tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Hover-Effekt für Zellen */
+td:hover {
+  background-color: #616161; /* Hebt die Zelle hervor */
+}
