@@ -3,7 +3,8 @@ let fields = [null, null, null, null, null, null, null, null, null];
 let currentPlayer = "circle"; // Startspieler ist "circle"
 
 function init() {
-  render();
+  render(); // Tabelle rendern
+  updateCurrentPlayerDisplay(); // Anzeige des aktuellen Spielers aktualisieren
 }
 
 // Die Funktion, die die gesamte Tabelle einmal rendert
@@ -54,5 +55,22 @@ function handleClick(index) {
 
     // Setze das SVG in das entsprechende Feld
     cell.innerHTML = symbol;
+  }
+
+  updateCurrentPlayerDisplay();
+}
+
+// Die Funktion zum Aktualisieren der Anzeige des aktuellen Spielers
+function updateCurrentPlayerDisplay() {
+  // HTML-Elemente für die Spieler
+  const player1Element = document.getElementById("player1");
+  const player2Element = document.getElementById("player2");
+
+  if (currentPlayer === "circle") {
+    player1Element.classList.add("highlightPlayer"); // Player 1 hervorheben
+    player2Element.classList.remove("highlightPlayer"); // Player 2 nicht hervorgehoben
+  } else {
+    player2Element.classList.add("highlightPlayer"); // Player 2 hervorheben
+    player1Element.classList.remove("highlightPlayer"); // Player 1 nicht hervorgehoben
   }
 }
