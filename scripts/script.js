@@ -164,8 +164,9 @@ function getCellPosition(index) {
   const col = index % 3;
   const cellSize = 100; // Jede Zelle ist 100px groß
 
+  // Berechnung der Mitte der Zelle
   return {
-    x: col * cellSize + 50, // X-Position (Mitte der Zelle)
-    y: row * cellSize + 50, // Y-Position (Mitte der Zelle)
+    x: col * cellSize + cellSize / 2, // X-Position (Mitte der Zelle)
+    y: row * cellSize + cellSize / 2, // Y-Position (Mitte der Zelle)
   };
 }
