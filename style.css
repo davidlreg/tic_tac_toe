@@ -39,6 +39,7 @@ table {
   height: 300px;
   border-collapse: collapse; /* Entfernt äußere Rahmen und erlaubt durchgehende Linien */
   background-color: transparent; /* Kein Hintergrund um die Tabelle */
+  position: relative;
 }
 
 /* Zellen der Tabelle */
@@ -81,7 +82,7 @@ td:hover {
 .winning-line {
   position: absolute;
   z-index: 9999; /* Sicherstellen, dass die Linie über der Tabelle liegt */
-  pointer-events: none; /* Verhindert Interaktionen */
+  pointer-events: none; /* Verhindert Interaktionen mit der Linie */
 }
 
 .winning-line path {

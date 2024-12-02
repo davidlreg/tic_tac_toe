@@ -18,10 +18,10 @@ function init() {
   updateCurrentPlayerDisplay(); // Anzeige des aktuellen Spielers aktualisieren
 }
 
-// Die Funktion, die die gesamte Tabelle einmal rendert
 function render() {
   let contentDiv = document.getElementById("content");
   let html = "<table>";
+  html += "<tbody>"; // Beginne das tbody-Tag hier
 
   for (let i = 0; i < 3; i++) {
     html += "<tr>";
@@ -42,6 +42,7 @@ function render() {
     html += "</tr>";
   }
 
+  html += "</tbody>"; // Ende des tbody-Tags
   html += "</table>";
   contentDiv.innerHTML = html;
 }
@@ -106,7 +107,7 @@ function checkWinner() {
   return null; // Kein Gewinner
 }
 
-// Diese Funktion zeichnet eine Linie zwischen den gewonnenen Feldern und rendert das SVG vor der Tabelle
+// Diese Funktion zeichnet eine Linie zwischen den gewonnenen Feldern und fügt das SVG vor den <tr>-Elementen ein
 function drawWinningLine(combination) {
   const [a, b, c] = combination;
 
@@ -140,17 +141,21 @@ function drawWinningLine(combination) {
     attributeName="stroke-dashoffset" 
     from="1000" 
     to="0" 
-    dur="0.5s" 
+    dur="0.4s" 
     fill="freeze" 
   />`;
 
   svg.appendChild(path);
 
-  // Füge das SVG-Element vor der Tabelle in das div mit der ID "content" ein
-  const contentDiv = document.getElementById("content");
-
-  // Füge das SVG zuerst ein, bevor die Tabelle gerendert wird
-  contentDiv.insertBefore(svg, contentDiv.firstChild);
+  // Finde das <tbody>-Element, um die Linie davor hinzuzufügen
+  const tbody = document.querySelector("tbody");
+  if (tbody) {
+    tbody.insertBefore(svg, tbody.firstChild); // SVG vor den ersten <tr> einfügen
+  } else {
+    // Wenn kein tbody existiert, fügen wir es direkt in den Content-Div ein
+    const contentDiv = document.getElementById("content");
+    contentDiv.appendChild(svg);
+  }
 }
 
 // Berechnet die Position der Zelle basierend auf dem Index (0 bis 8)
