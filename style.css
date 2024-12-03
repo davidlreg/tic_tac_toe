@@ -94,3 +94,28 @@ td:hover {
   stroke-dashoffset: 1000;
   transition: stroke-dashoffset 1s ease;
 }
+
+.restartGameButton {
+  background-color: #ff6347; /* Auffälliges Rot-Orange */
+  color: white; /* Textfarbe */
+  font-size: 1.2em; /* Angemessene Schriftgröße */
+  font-weight: bold; /* Fettschrift */
+  padding: 10px 20px; /* Innenabstand für bessere Größe */
+  border: none; /* Kein Rand */
+  border-radius: 8px; /* Abgerundete Ecken */
+  cursor: pointer; /* Zeigt den Klick-Effekt an */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Animiert Farbe und Bewegung */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Leichter Schatten */
+}
+
+.restartGameButton:hover {
+  background-color: #e5533c; /* Dunklerer Ton beim Hover */
+  transform: translateY(-2px); /* Leichter "Hochhebe"-Effekt */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3); /* Verstärkter Schatten */
+}
+
+.restartGameButton:active {
+  background-color: #c44c35; /* Noch dunkler bei Klick */
+  transform: translateY(1px); /* Zurück zur normalen Position */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduzierter Schatten */
+}
