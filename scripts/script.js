@@ -111,20 +111,19 @@ function checkWinner() {
 function drawWinningLine(combination) {
   const [a, b, c] = combination;
 
-  // Berechne die Positionen der Felder
   const positions = [
     getCellPosition(a),
     getCellPosition(b),
     getCellPosition(c),
   ];
 
-  // Erstelle das SVG-Element für die Linie
+  // SVG erstellen
   const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
   svg.setAttribute("width", "100%");
   svg.setAttribute("height", "100%");
   svg.setAttribute("class", "winning-line");
 
-  // Erstelle das Path-Element für die Linie
+  // Linie (Path) erstellen
   const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
   path.setAttribute(
     "d",
@@ -136,37 +135,36 @@ function drawWinningLine(combination) {
   path.setAttribute("stroke-dasharray", "1000");
   path.setAttribute("stroke-dashoffset", "1000");
 
-  // Animation der Linie
-  path.innerHTML = `<animate 
-    attributeName="stroke-dashoffset" 
-    from="1000" 
-    to="0" 
-    dur="0.4s" 
-    fill="freeze" 
-  />`;
+  // Animations-Tag hinzufügen
+  path.innerHTML = `
+    <animate 
+      attributeName="stroke-dashoffset" 
+      from="1000" 
+      to="0" 
+      dur="0.4s" 
+      fill="freeze" 
+    />
+  `;
 
   svg.appendChild(path);
 
-  // Finde das <tbody>-Element, um die Linie davor hinzuzufügen
-  const tbody = document.querySelector("tbody");
-  if (tbody) {
-    tbody.insertBefore(svg, tbody.firstChild); // SVG vor den ersten <tr> einfügen
-  } else {
-    // Wenn kein tbody existiert, fügen wir es direkt in den Content-Div ein
-    const contentDiv = document.getElementById("content");
-    contentDiv.appendChild(svg);
-  }
+  // SVG an die richtige Position anhängen
+  const content = document.getElementById("content");
+  content.appendChild(svg);
 }
 
 // Berechnet die Position der Zelle basierend auf dem Index (0 bis 8)
 function getCellPosition(index) {
-  const row = Math.floor(index / 3);
-  const col = index % 3;
-  const cellSize = 100; // Jede Zelle ist 100px groß
+  const cell = document.querySelectorAll("td")[index];
+  const rect = cell.getBoundingClientRect();
 
-  // Berechnung der Mitte der Zelle
+  // Position der Zellenmitte relativ zum #content
+  const contentRect = document
+    .getElementById("content")
+    .getBoundingClientRect();
+
   return {
-    x: col * cellSize + cellSize / 2, // X-Position (Mitte der Zelle)
-    y: row * cellSize + cellSize / 2, // Y-Position (Mitte der Zelle)
+    x: rect.left - contentRect.left + rect.width / 2,
+    y: rect.top - contentRect.top + rect.height / 2,
   };
 }

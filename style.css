@@ -81,8 +81,12 @@ td:hover {
 
 .winning-line {
   position: absolute;
-  z-index: 9999; /* Sicherstellen, dass die Linie über der Tabelle liegt */
-  pointer-events: none; /* Verhindert Interaktionen mit der Linie */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999; /* Über der Tabelle */
+  pointer-events: none; /* Kein Einfluss auf Interaktionen */
 }
 
 .winning-line path {
