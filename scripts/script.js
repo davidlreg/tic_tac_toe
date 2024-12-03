@@ -73,8 +73,13 @@ function handleClick(index) {
     setTimeout(() => {
       alert(currentPlayer + " hat gewonnen!"); // Zeige eine Gewinnmeldung an, nachdem die Linie angezeigt wurde
     }, 1000); // Verpasse eine kleine Verzögerung (1000ms), damit die Linie animiert wird
-  } else {
-    // Wenn noch niemand gewonnen hat, Spieler wechseln
+  }
+
+  // Überprüfe, ob das Spiel vorbei ist (Gewinn oder alle Felder voll)
+  checkGameOver();
+
+  if (!gameOver) {
+    // Spieler wechseln, wenn das Spiel nicht vorbei ist
     currentPlayer = currentPlayer === "Spieler 1" ? "Spieler 2" : "Spieler 1";
     updateCurrentPlayerDisplay(); // Anzeige des aktuellen Spielers aktualisieren
   }
@@ -167,4 +172,16 @@ function getCellPosition(index) {
     x: rect.left - contentRect.left + rect.width / 2,
     y: rect.top - contentRect.top + rect.height / 2,
   };
+}
+
+function checkGameOver() {
+  // Prüfe, ob ein Spieler gewonnen hat
+  const winnerCombination = checkWinner();
+  const allFieldsFilled = fields.every((field) => field !== null);
+
+  if (winnerCombination || allFieldsFilled) {
+    // Aktivieren des Buttons
+    const restartButton = document.querySelector(".restartGameButton");
+    restartButton.disabled = false;
+  }
 }

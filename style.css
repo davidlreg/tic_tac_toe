@@ -119,3 +119,9 @@ td:hover {
   transform: translateY(1px); /* Zurück zur normalen Position */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Reduzierter Schatten */
 }
+
+.restartGameButton:disabled {
+  background-color: #aaa; /* Grauer Hintergrund */
+  cursor: not-allowed; /* Zeigt an, dass der Button nicht klickbar ist */
+  box-shadow: none; /* Kein Schatten */
+}
